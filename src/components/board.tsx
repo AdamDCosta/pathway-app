@@ -1,16 +1,25 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { BoardColumn } from "@/typings/board-types";
+import type { BoardItem, BoardColumns } from "@/typings/board-types";
+import DraggableCard from "./draggable-card";
 
-type BoardColumns = ["Todo", "In Progress", "Testing"];
-type BoardColumn = BoardColumns[number];
+const testBoardItem: BoardItem = {
+  title: "<Team>-1",
+  description: "Test Item 1",
+  status: "Todo",
+  priority: "high",
+};
 
 function BoardColumn({ title }: { title: BoardColumn }) {
   return (
     <div className="bg-muted h-full basis-1/2 p-2">
-      <div>
+      <div className="mb-2">
         <span>{title}</span>
       </div>
       <ScrollArea>
-        <div></div>
+        {testBoardItem.status === title && (
+          <DraggableCard cardDetails={testBoardItem} />
+        )}
       </ScrollArea>
     </div>
   );
