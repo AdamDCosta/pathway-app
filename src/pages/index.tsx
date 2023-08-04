@@ -2,6 +2,7 @@ import { api } from "@/utils/api";
 import { useUser } from "@clerk/nextjs";
 import SignIn from "@/components/sign-in";
 import PageLayout from "@/components/layout";
+import Board from "@/components/board";
 
 export default function Home() {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -15,7 +16,7 @@ export default function Home() {
       {!isSignedIn && <SignIn />}
       {isSignedIn && (
         <PageLayout>
-          <div>Board goes here...</div>
+          <Board />
         </PageLayout>
       )}
     </>
