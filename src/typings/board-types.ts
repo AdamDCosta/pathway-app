@@ -1,4 +1,5 @@
 export type BoardItem = {
+  id: number, 
   title: string,
   description: string,
   status: BoardColumn,
@@ -15,3 +16,9 @@ export type Priority = (typeof Priorities)[keyof typeof Priorities]
 
 export type BoardColumns = ["Todo", "In Progress", "Testing"];
 export type BoardColumn = BoardColumns[number];
+
+export type ColumnData = {
+  id: string
+  status: BoardColumn;
+  items: BoardItem[];
+};

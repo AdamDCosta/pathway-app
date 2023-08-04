@@ -9,11 +9,11 @@ import {
 import type { BoardItem } from "@/typings/board-types";
 
 export default function DraggableCard({
-  cardDetails,
+  cardData,
 }: {
-  cardDetails: BoardItem;
+  cardData: BoardItem;
 }) {
-  const { title, description, priority } = cardDetails;
+  const { title, description, status, priority } = cardData;
 
   return (
     <Card className="bg-muted flex flex-col gap-2 rounded-md p-2 shadow-sm cursor-pointer">
