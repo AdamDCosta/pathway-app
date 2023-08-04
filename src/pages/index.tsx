@@ -20,7 +20,7 @@ export default function Home() {
           <div>
             {!user.isSignedIn && (
               <SignInButton>
-                <Button variant="secondary" className="animate-in">
+                <Button variant="secondary" className="animate-in zoom-in duration-500">
                   Sign In
                 </Button>
               </SignInButton>
