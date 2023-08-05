@@ -18,11 +18,11 @@ function Column({ data, index }: { data: ColumnData; index: number }) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="max-h-full basis-1/2 bg-muted p-2"
+          className="max-h-full basis-1/2 bg-muted"
         >
-          <div className="mb-2 flex justify-between">
+          <div className="mb-2 flex h-[5%] justify-between p-2">
             <span className="font-semibold">{data.status}</span>
-            <span className="rounded-full bg-foreground px-2 text-center text-background">
+            <span className="h-5 w-5 flex justify-center items-center rounded-full bg-foreground p-1 text-background">
               {data.items.length}
             </span>
           </div>
@@ -31,35 +31,33 @@ function Column({ data, index }: { data: ColumnData; index: number }) {
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                className={`max-h-100}`}
+                className="h-[95%]"
               >
-                <ScrollArea>
-                  <div
-                    className={`flex flex-col space-y-2 ${
-                      snapshot.isDraggingOver ? "bg-white" : "bg-muted"
-                    }`}
-                  >
-                    {data.items.map((item, index) => {
-                      return (
-                        <Draggable
-                          key={item.id}
-                          index={index}
-                          draggableId={item.id.toString()}
-                        >
-                          {(provided) => (
-                            <DraggableCard
-                              cardData={item}
-                              key={item.title}
-                              innerRef={provided.innerRef}
-                              draggableProps={provided.draggableProps}
-                              dragHandleProps={provided.dragHandleProps}
-                            />
-                          )}
-                        </Draggable>
-                      );
-                    })}
-                    {provided.placeholder}
-                  </div>
+                <ScrollArea
+                  className={`h-full p-2 ${
+                    snapshot.isDraggingOver ? "bg-slate-600" : "bg-muted"
+                  }`}
+                >
+                  {data.items.map((item, index) => {
+                    return (
+                      <Draggable
+                        key={item.id}
+                        index={index}
+                        draggableId={item.id.toString()}
+                      >
+                        {(provided) => (
+                          <DraggableCard
+                            cardData={item}
+                            key={item.title}
+                            innerRef={provided.innerRef}
+                            draggableProps={provided.draggableProps}
+                            dragHandleProps={provided.dragHandleProps}
+                          />
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
                 </ScrollArea>
               </div>
             )}
