@@ -22,7 +22,7 @@ function Column({ data, index }: { data: ColumnData; index: number }) {
         >
           <div className="mb-2 flex h-[5%] justify-between p-2">
             <span className="font-semibold">{data.status}</span>
-            <span className="h-5 w-5 flex justify-center items-center rounded-full bg-foreground p-1 text-background">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-foreground p-1 text-background">
               {data.items.length}
             </span>
           </div>
@@ -77,7 +77,27 @@ export default function Board() {
   }, []);
 
   function handleOnDragEnd(result: DropResult) {
-    return;
+    const { destination, type, source } = result;
+
+    if (!destination) return;
+
+    // Handle a column drag
+    if (type === "column") {
+      const columns = boardState.map((col) => col);
+      const [removed] = columns.splice(source.index, 1);
+
+      if (removed) {
+        columns.splice(destination.index, 0, removed);
+      }
+
+      const newState = boardState.map(
+        (col, index) => columns[index]
+      ) as ColumnData[];
+
+      setBoardState(newState);
+    }
+
+    console.log("DROP", destination, type, source);
   }
 
   return (
